@@ -4,7 +4,7 @@
 
 #!/usr/bin/env python3
 import os
-import sys
+
 print('Введите путь к папке')
 income = str (input())
 try:
