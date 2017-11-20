@@ -4,6 +4,7 @@
 # Предусмотреть возможность изменения формы записи комплексного числа:
 # алгебраическая форма, тригонометрическая форма, экспоненциальная форма.
 # http://www.mathforyou.net/online/numbers/complex/convert/
+
 import math
 import cmath
 class Complex_num():
@@ -21,29 +22,35 @@ class Complex_num():
 
         else:
             return self.complex_num
-
-
-    def summation(self,term):
-        self.complex_num += term
-
-    def subtraction(self,term):
-        self.complex_num -= term
-
-    def multiplication (self,term):
-        self.complex_num *= term
-
-    def division(self,term):
-        self.complex_num /= term
-
-    def exponentiation(self,term):
-        self.complex_num **= term
-
+        
     def grade_algebraic(self):
         self.complex_num = complex(self.modul*math.cos(self.arg),
                                    self.modul*math.sin(self.arg))
+        
     def grade_exponential(self):
         self.modul = abs(self.complex_num)
         self.arg = cmath.phase(self.complex_num)
+
+    def summation(self,term):
+        self.complex_num += term
+        self.grade_exponential()
+        
+
+    def subtraction(self,term):
+        self.complex_num -= term
+        self.grade_exponential()
+
+    def multiplication (self,term):
+        self.complex_num *= term
+        self.grade_exponential()
+
+    def division(self,term):
+        self.complex_num /= term
+        self.grade_exponential()
+
+    def exponentiation(self,term):
+        self.complex_num **= term
+        self.grade_exponential()
 
     def sqrt(self,degree):
         result=[]
@@ -56,7 +63,6 @@ class Complex_num():
         self.form_type = 'algebraic'
         self.grade_algebraic()
 
-
     def turn_to_trigonometric(self):
         self.form_type = 'trigonometric'
         self.grade_exponential()
@@ -65,4 +71,5 @@ class Complex_num():
         self.form_type = 'exponential'
         self.grade_exponential()
 
-#test comment
+    def what_form(self):
+        return self.form_type
