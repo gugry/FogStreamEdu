@@ -8,7 +8,7 @@
 import math
 import cmath
 
-class UncomplexInputException(Exception):
+class Uncomplex_input_exception(Exception):
     '''Exception for uncomplex input keys'''
 
     def __init__(self):
@@ -21,19 +21,18 @@ class Complex_num():
     form_type: form of complex_number
     modul and arg: module and argument of complex number in trigonometric
                                                     and exponential forms
-
     """
 
     def __init__(self, complex_num):
         try:
             if not (isinstance(complex_num, complex)):
-                raise UncomplexInputException
+                raise  Uncomplex_input_exception
             else:
                 self.complex_num = complex_num
                 self.form_type = 'algebraic'
                 self.modul = abs(self.complex_num)
                 self.arg = cmath.phase(self.complex_num)
-        except UncomplexInputException as ex:
+        except Uncomplex_input_exception as ex:
             print(ex.text)
 
     def __call__(self, *args, **kwargs):
@@ -77,9 +76,11 @@ class Complex_num():
 
     def division(self, term):
         """divides complex number on term"""
-
-        self.complex_num /= term
-        self.grade_exponential()
+        if term == 1:
+            return 'Error: term should not be equal'
+        else:
+            self.complex_num /= term
+            self.grade_exponential()
 
     def exponentiation(self, term):
         """raises complex number to the power of term"""
@@ -90,13 +91,11 @@ class Complex_num():
     def sqrt(self, degree):
         """return a root complex number
         degree: degree of the root
-
         """
-
         result = []
         for count in range(degree):
             result.append([self.modul * (math.cos((self.arg + 2 * math.pi * count) / degree)),
-                           self.modul * (math.sin((self.arg + 2 * math.pi * count) / degree))])
+                            self.modul * (math.sin((self.arg + 2 * math.pi * count) / degree))])
         return result
 
     def turn_to_algebraic(self):
