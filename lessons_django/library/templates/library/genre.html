@@ -1,0 +1,13 @@
+{% if genre %}
+    <h1>{{ genre.name }}</h1>
+{% else %}
+    <p>No genre are available.</p>
+{% endif %}
+
+{% if books %}
+   {% for book in books %}
+        <li>{{ book.name }} </li>
+    {% endfor %}
+{% else %}
+    <p>No books are available.</p>
+{% endif %}

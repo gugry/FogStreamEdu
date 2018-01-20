@@ -2,15 +2,14 @@ from django.db import models
 
 class Book(models.Model):
     name = models.CharField('Название', max_length=32)
-    # author = models.ForeignKey('Author', verbose_name='Автор', on_delete='CASCADE', related_name='author')
-    author = models.ManyToManyField('Author', verbose_name='Автор', related_name='author')
-    genre = models.ForeignKey('Genre', verbose_name='Жанр', on_delete='CASCADE', related_name='genre')
+    author = models.ManyToManyField('Author', verbose_name='Автор', related_name='author_book')
+    genre = models.ForeignKey('Genre', verbose_name='Жанр', on_delete='CASCADE', related_name='genre_book')
+    # Жанр оставил один-ко-многим для примера
 
     def __str__(self):
         return self.name
 
     class Meta:
-        ordering = ('-name',)
         verbose_name = 'Книга'
         verbose_name_plural = 'Книги'
 
@@ -21,10 +20,9 @@ class Author(models.Model):
     patronymic = models.CharField('Отчество ',max_length=32)
 
     def __str__(self):
-        return self.name
+        return self.sername
 
     class Meta:
-        ordering = ('-sername',)
         verbose_name = 'Автор'
         verbose_name_plural = 'Авторы'
 
@@ -36,6 +34,5 @@ class Genre(models.Model):
         return self.name
 
     class Meta:
-        ordering = ('-name',)
         verbose_name = 'Жанр'
         verbose_name_plural = 'Жанры'

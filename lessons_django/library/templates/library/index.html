@@ -1,0 +1,13 @@
+{% if author_list %}
+    <a href="/name">Sort by name (increase)</a>
+    <a href="/-name">Sort by name (decrease)</a>
+    <a href="/id">Sort by id (increase)</a>
+    <a href="/-id">Sort by id (decrease)</a>
+    <ul>
+    {% for author in author_list %}
+        <li><a href="/author/{{ author.id }}/">{{ author.id }} &nbsp {{ author.sername }} &nbsp {{ author.name }} &nbsp {{ author.patronymic }}</a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No authors are available.</p>
+{% endif %}

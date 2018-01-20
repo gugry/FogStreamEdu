@@ -1,0 +1,13 @@
+{% if author %}
+    <h1>{{ author.sername }} &nbsp {{ author.name }} &nbsp {{ author.patronymic }}</h1>
+{% else %}
+    <p>No author are available.</p>
+{% endif %}
+
+{% if books %}
+   {% for book in books %}
+<li>{{ book.name }} &nbsp (<a href="/genre/{{ book.genre.id }}/">{{ book.genre}}</a>)</li>
+    {% endfor %}
+{% else %}
+    <p>No books are available.</p>
+{% endif %}
